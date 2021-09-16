@@ -1,0 +1,175 @@
+*import/export
+
+    *CommonJS(forma vieja)
+    
+    const nombre_variable = require("nombre_archivo");
+    const nombre_variable = require("./src/ejemplo.js");---> va traer lo que vos exportes del archivo
+                                                                Hay que tener en el archivo como mínimo una sentencia de import/export
+    
+
+    *ES6(forma nueva)
+
+    import nombre_variable from "nombre_archivo";---> es implicito que se trae un archivo 
+    import {nombre_variable} from "nombre_archivo";
+
+    const nombre_variable = true;
+    export default nombre_variable;
+
+*jsx---> nueva sintaxis que suma en ReactJS
+        seguis haciendo JS pero escribis coas similares a HTML
+        se escribe como una etiqueta <App/> y luego babel lo traduce a JS vanilla
+
+        App() === <App/>    o    App() === <App> </App>
+
+        Funcion render tiene dos parametros
+        A: lo que vas a importar (<App/>)
+        B: donde queres imprimirlo (Document.getElmentByID("root"))
+
+
+*Cada componente tiene que estar en su propio archivo. Cada archivo tiene que tener nombre 
+igual al del componente para no confundirnos. 
+*En el archivo del componente exportamos y en el indeximportamos ese archivo recientemente exportado
+
+*Componentes = Funciones que retornan una vista. Los componentes SIEMPRE son fuinciones.
+
+function App(){}
+
+const App = () => { return "" } -----> estilo que mas vamos a usar. vamos a retornar usualmente jsx. Pero se puede
+                                        retornar cualquier cosa.
+
+class App {}
+
+*Todos estos ejemplos pueden ser componentes.
+*Todas las funciones componentes tienen en alguna parte el "return", osea el retorno.
+*Todos los componentes deben arrancar con mayúscula
+
+*Para poder retornar mas de una cosa en un componente se puede realizar con un fragment (<>   </>) o con una etiqueta div 
+ lo cual no es lo mejor. Si el fragment. Otra forma es armar un array [], separar las cosas del componente con una "," y 
+ el array lo ordena y lo muestra.
+
+*Los componentes PUEDEN tener: props, estado, y ciclo de vida. Estos tres van de la mano, pero pueden funcionar individualmente
+Props es la mas normal de ver individualmente
+
+*Props: son parámetros de una función 
+        <Header titulo="Gena Guitar`s"/> === Header({Titulo:"Gena Guitar`s"})
+
+        Siempre el prop de un componente es un objeto. V Puede ser un objeto con determinada cantidad de propiedades
+
+        El prop va como formato atributo donde llamamos al componente
+
+*Como usar prop:
+            const App = () => {
+    return (
+        <>
+            <Header titulo="Gena Guitar`s" subtitulo="Las mejores guitarras"/>
+            <Fot />
+        </>
+    )
+}
+            
+    //El header busca los parametros donde esta siendo llamado y toma los parametros explicitos//
+
+            const Header = (parametro) => {
+
+    console.log(parametro.titulo)
+    console.log(parametro.subtitulo)
+
+    return (
+            <header className="test">
+                <h1>{parametro.titulo}</h1>
+                <h2>{parametro.subtitulo}</h2>
+                <Nav />
+            </header>
+    )
+}
+
+import Nav from "./Nav"
+
+const Header = ({ titulo, subtitulo, edad}) => {
+//const Header = (props) => {
+
+    /*const { titulo, subtitulo, edad} = props;---- V2*/
+
+    /*console.log(parametro)
+    console.log(parametro.titulo)
+    console.log(parametro.subtitulo)
+    console.log(parametro.edad)
+    */
+
+    return (
+            <header className="test">
+                <h1>{titulo}</h1>
+                <h2>{subtitulo}</h2>
+                <h4>{edad}</h4>
+                <p className="material-icons"></p>
+                <Nav />
+            </header>
+    )
+}
+
+Chequear la documentacion de REACT para ver sobre props
+
+SIEMPRE LOS PROPS SON UN OBJETO!!!!
+
+*Ciclo De Vida: relación con los props  
+                mount --> update --> unmount
+                Se renderiza, luego se actualiza y luego se desmonta
+
+La parte clave es la ACTUALIZACIÓN 
+Que hay que hacer para que el componente se actualice solo. El ciclo de vida de un componente va a pasar por el render
+de 0 a 100, si se mandan nuevos props (si cambia el valor del prop) o si cambia el estado del componente.
+
+*Estado: Son variables internas de un componente de perduran en el tiempo
+las cuales podemos modificar para reaccionar a cambios
+
+*Ciclo de vida: es la ejecucion de un componente en el tiempo, se ejecuta una vez y 
+se destruye
+
+*CLOSURES: son funciones dentro de funciones que sirven para encapsular
+variables
+
+*Como hacemos un estado: se hacen con los "HOOKS"
+                HOOKS: TODOS los hooks son funciones(podes crear tus hooks, pero react ya viene con hooks que podemos utilizar. Tambien 
+                si intalas librerias pueden traer sus propios hooks). Todos los hooksempiezan con "use...", significa que es para
+                usar lo que sigue post "use...". No hay un uso en particular para los hooks. Cada uno le da el uso necesario.
+                SON FUINCIONES "MULTIUSO", que nos permiten adaptar componentes con funcionalidades especifiicas que antes no teniamos.
+                Los hooks no van dentro de unsa situación condicional!!
+
+                El hook de useEffect es para realizar efectos secundarios sobre el componente. Cualquier cosa que no sea dibujar es secundario.
+                SIEMPRE EL HOOK DE useState  NOS DEVUELVE UN ARRAY.Este array siempre tiene dos cosas. Cosa 1 el estado, cosa 2 la funcion.
+
+                   //El hook useState sirve para crear una variable de estado
+    /*const resultado = useState("")
+    const estado = resultado[0]
+    const cambioDeEstado = resultado[1]*/
+    const [contador, setContador] = useState(0)
+    //console.log(contador, setContador)
+
+    //El hook useEffect sirve para ejecutar una funcion cuando el componente se renderiza
+    useEffect(()=>{
+        console.log("Este componente ya se renderizo")
+    })
+    
+
+    *rafc sirve como atajo para crear componentes
+    *Reemplazar siempre class por className!!!
+
+
+*App---> NavBar---> CartWidget
+    ---> ItemListContainer--> ItemList-->Item
+    ---> ItemDetailContainer--> ItemDetail--> ItemCount
+
+*PROMESAS: en js se separan las cosas en dos: sincronicas(bloqueante) o asincronicas(no bloqueantes). Las promesas hacen que algo sincronico sea asicncronico
+            y nos avisan cuando este proceso termina y como termina. Desbloquea la página.
+
+            SetTimeOut(()=>{
+                console.log("Hola")
+            }, 5000)
+
+            El console.log se va a ejecutar despues del tiempo indicado previamente(5s en este caso)
+
+operacion.then(()=>{})
+                       ----->Sirven para saber si la operacion funciona bien o mal
+operacion.catch(()=>{})
+
+const promesa = new Promise()
