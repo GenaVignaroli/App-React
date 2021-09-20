@@ -1,18 +1,5 @@
 import {useState} from "react"
 
-/*const ItemCount = ({stock, initial, onAdd}) => {
-    const [contador, setContador] = useState(0)
-
-    return(
-        <>
-            <p>Contador: {contador}</p>
-            <button onClick={() => { setContador(contador + 1) } }> + </button>
-            <button onClick={() => { setContador(contador - 1) } }> - </button>
-            <button> Confirmar </button>
-        </>
-    )
-}*/  
-
 const ItemCount = ({}) => {
     const [valor, setValor] = useState(0);
 
@@ -28,7 +15,7 @@ const ItemCount = ({}) => {
     }
 
     return (
-    <div className="btn-wrapper mt-3 justify">
+    <div className="btn-wrapper mt-3">
         <a href="#" className="btn btn-dark me-3" onClick={handleSubstract}>-</a>
         <span>{valor}</span>
         <a href="#" className="btn btn-dark ms-3" onClick={handleSum}>+</a>
@@ -37,3 +24,4 @@ const ItemCount = ({}) => {
 }
 
 export default ItemCount
+

@@ -1,52 +1,37 @@
-//import { useState } from "react"
-//import { useEffect } from "react"
-//import ItemList from "./ItemList/ItemList"
-//import ItemCount from "./ItemCount"
+import { useEffect, useState } from "react"
+import ItemList from "./ItemList/ItemList"
+import ItemCount from "./ItemCount"
 
-/*const productosIniciales =[
-    {id:1, titulo:"Producto 1", stock: 35},
-    {id:2, titulo:"Producto 2", stock: 44},
-    {id:3, titulo:"Producto 3", stock: 54},
-    {id:4, titulo:"Producto 4", stock: 65}
-]*/
+const productos = ([
+    {id:1, titulo:"Guitarra Fender Jaguar", descripcion:"Guitarra fender jaguar año 1960. Modelo deluxe. Madera americana", precio: 420000, stock: 10, img:"https://www.pronorte.es/_files/product/18566/gallery1/guitarra-electrica-fender-american-pro-ii-jazzmaster-rw-3tsb-1.jpg"},
+    {id:2, titulo:"Guitarra Fender Deluxe", descripcion:"Guitarra fender deluxe. Año 1992", precio: 300000, stock: 17, img:"https://www.falymusic.com/images/thumbnails/1000/1000/detailed/9/0144503500_gtr_frt_001_rr_opt__1_.jpg"},
+    {id:3, titulo:"Guitarra Gibson Les Paul", descripcion:"Guitarra Gibson Les Paul. Modelo Coustom. Año 1967", precio: 390000, stock: 9, img:"https://d1aeri3ty3izns.cloudfront.net/media/25/256280/1200/preview_1.jpg"},
+    {id:4, titulo:"Guitarra PRS", descripcion:"Guitarra PRS Americana. Año 2005. Doble Humbucker", precio: 270000, stock: 35, img:"https://mlstaticquic-a.akamaihd.net/guitarra-electrica-prs-se-custom-24-trampas-green-D_NQ_NP_606993-MLU32031294655_082019-F.jpg"},
+])
 
-const ItemListContainer = ({onSum, onSubstract, valor, onAdd}) => {
+const ItemListContainer = ({onSum, onSubstract, valor, onAdd}) => {    
 
-    
-    /*const [productos, setProductos] = useState([])
+    const [productosIniciales, setProductosIniciales] = useState([])
+
 
     useEffect(()=>{
-        const simulacionDePedido = new Promise((res, rej)=>{
+    const mockAsync = new Promise((res)=>{
             setTimeout(()=>{
-                res(productosIniciales)
+               res(productos) 
             }, 2000)
         })
-        simulacionDePedido
-            .then(resultado=>{
-                setProductos(productosIniciales)
-            },[])  <ItemList productos={productos} />
-    })*/
 
-    
-        
+        mockAsync
+            .then((resultado)=>{
+                setProductosIniciales(resultado)
+            })
+    })
+      
     return (
-        <div>
-            <div className="card mt-5 ms-5" style={{ width: "18rem" }}>
-                <img src="https://www.pronorte.es/_files/product/18566/gallery1/guitarra-electrica-fender-american-pro-ii-jazzmaster-rw-3tsb-1.jpg" className="card-img-top" alt="..." />
-                <div className="card-body">
-                    <h5 className="card-title">Guitarra Fender</h5>
-                    <p className="card-text">Guitarra fender jaguar año 1960. Modelo deluxe. Madera americana</p>
-                    <h5 className="card-title">$200.000</h5>
-                    <a href="#" class="btn btn-primary" onClick={onAdd}>Agregar al carrito</a>
-                </div>
-                 <div className="btn-wrapper mt-2">
-                    <a href="#" className="btn btn-dark me-3" onClick={onSubstract}>-</a>
-                    <span>{valor}</span>
-                    <a href="#" className="btn btn-dark ms-3" onClick={onSum}>+</a>
-                 </div>
-            </div>
-            
-        </div>
+        <>
+          <ItemList productos={productosIniciales} />
+          <ItemCount onSum={onSum} onSubstract={onSubstract} valor={valor} onAdd={onAdd} />
+        </>
     )
 }
 
