@@ -1,7 +1,9 @@
 import { useState } from "react";
 import Nav from "./NavBar/Nav"
-import ItemListContainer from "./ItemListContainer"
-
+import ItemListContainer from "./ItemListContainer/ItemListContainer"
+import ItemDetailContainer from "./ItemDetailContainer/ItemDetailContainer"
+import { BrowserRouter, Route, Switch } from "react-router-dom"
+import Cart from "./CartWidget/Cart"
 
 
 const App = () => {
@@ -26,12 +28,25 @@ const App = () => {
 
     return (
         <div className="app">
-            <Nav cart={cart} />
-            <ItemListContainer 
-            onSum={handleSum} 
-            onSubstract={handleSubstract} 
-            valor={valor} 
-            onAdd={handleAdd} />
+            <BrowserRouter>
+                 <Nav cart={cart} />
+                 <Switch>
+
+                 <Route path="/Home" component={ItemListContainer} exact/>
+
+                 <Route path="/guiitarras/:id" component={ItemListContainer}/>
+
+                 <Route path="/cart" component={Cart}/>
+                 
+                 </Switch>
+
+                 <ItemListContainer 
+                 onSum={handleSum} 
+                 onSubstract={handleSubstract} 
+                 valor={valor} 
+                 onAdd={handleAdd} />
+                <ItemDetailContainer />
+            </BrowserRouter>
         </div>
     )
 }

@@ -173,3 +173,36 @@ operacion.then(()=>{})
 operacion.catch(()=>{})
 
 const promesa = new Promise()
+
+Fetch Api / Api de cache da promesas 
+|
+|
+const pedido = fetch("https://jsonplaceholder.typicode.com/")----> Indica que quiero comunicarme con otra maquina sea cual sea. Se indica que maquina entre ()
+
+pedido
+    .then((respuesta) => {
+        return respuesta.json()---> esto te da otr promesa y forma una cadena de promesas
+    })
+    .then((respuesta) => {
+        console.log(respuesta)---> Aca ya puedo mapear y transformar
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+
+
+respuesta.json()----> pedis array
+respuesta.blob()----> pedis video o foto 
+respuesta.text()----> texto plano
+
+1) Instalo la libreria
+2) Meto toda la aplicación dentro del enrutador
+Un componente enrutador es 
+    
+    BowserRouter --> enrutador mas común. Usa la API de history. 
+    HashRouter ---> Usa otra técnica. usa location.hash
+    MemoryLink ---> Usa una memoria interna 
+    StaticRouter ---> Es para lo que son servidores(backend) SSR(Server Side Renering)
+
+    Vamos a usar BrowserRouter
+3) Comienzo a enrutar
