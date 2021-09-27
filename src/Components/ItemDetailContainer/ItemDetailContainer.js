@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./Container.css";
 import ItemDetail from "./ItemDetail";
+import { ProductDetail } from "./ProductDetail";
 
 export const ItemDetailContainer = () => {
     const [productos, setProductos] = useState([]);
 
     useEffect(() => {
-    setTimeout = () =>
+    setTimeout (() =>{
         getProductos();
-    }, 2000, []);
+    }, 2000)
+    }, []);
 
+    console.log(productos)
 
     const getProductos = () =>{
     fetch('https://fakestoreapi.com/products')
@@ -18,15 +21,29 @@ export const ItemDetailContainer = () => {
     }
 
     return(
-        <div>
-            <div className="productos-list">
+        <div className="productos-container">
                 {
-                    productos.map(productos => <ItemDetail title={productos.title} image={productos.image} id={productos.id} price={productos.price} />)
+                productos.map(productos => <ItemDetail 
+                    key={productos.id}
+                    id={productos.id} 
+                    title={productos.title} 
+                    image={productos.image}  />)
                 }
-            </div>
         </div>
     )
 
 }
 
 export default ItemDetailContainer
+
+
+/*{
+    productos.map(productos => <ProductDetail 
+        key={productos.id}
+        id={productos.id} 
+        title={productos.title} 
+        image={productos.image} 
+        price={productos.price} 
+        description={productos.description}
+        category={productos.category}/>)
+    }*/

@@ -14,11 +14,13 @@ const ItemCount = ({}) => {
         setValor(valor-1)
     }
 
+   
+
     return (
     <div className="btn-wrapper mt-3">
-        <a href="#" className="btn btn-dark me-3" onClick={handleSubstract}>-</a>
+        <a className="btn btn-dark me-3" onClick={handleSubstract}>-</a>
         <span>{valor}</span>
-        <a href="#" className="btn btn-dark ms-3" onClick={handleSum}>+</a>
+        <a className="btn btn-dark ms-3" onClick={handleSum}>+</a>
     </div>
     )
 }

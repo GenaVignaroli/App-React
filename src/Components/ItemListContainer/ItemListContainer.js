@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import ItemList from "./ItemList"
-import ItemCount from "./ItemCount"
 
 const productos = ([
     {id:1, titulo:"Guitarra Fender Jaguar", descripcion:"Guitarra fender jaguar año 1960. Modelo deluxe. Madera americana", precio: 420000, stock: 10, img:"https://www.pronorte.es/_files/product/18566/gallery1/guitarra-electrica-fender-american-pro-ii-jazzmaster-rw-3tsb-1.jpg"},
@@ -9,7 +8,7 @@ const productos = ([
     {id:4, titulo:"Guitarra PRS", descripcion:"Guitarra PRS Americana. Año 2005. Doble Humbucker", precio: 270000, stock: 35, img:"https://mlstaticquic-a.akamaihd.net/guitarra-electrica-prs-se-custom-24-trampas-green-D_NQ_NP_606993-MLU32031294655_082019-F.jpg"},
 ])
 
-const ItemListContainer = ({onSum, onSubstract, valor, onAdd}) => {    
+const ItemListContainer = ({}) => {    
 
     const [productosIniciales, setProductosIniciales] = useState([])
 
@@ -30,7 +29,6 @@ const ItemListContainer = ({onSum, onSubstract, valor, onAdd}) => {
     return (
         <>
           <ItemList productos={productosIniciales} />
-          <ItemCount onSum={onSum} onSubstract={onSubstract} valor={valor} onAdd={onAdd} />
         </>
     )
 }

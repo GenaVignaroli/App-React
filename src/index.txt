@@ -206,3 +206,16 @@ Un componente enrutador es
 
     Vamos a usar BrowserRouter
 3) Comienzo a enrutar
+
+EVENTOS:
+
+Saber los conceptos de 
+
+Event.preventDefault()---> Cancela el comportamiento por defecto del evento
+Event.stopPropagation()--->Detiene laa propagación de un evento. 
+Event.target---> muestra lo que ejecuta la función (ingresado en tiempo real por el usuario), a diferencia del parametro que muestra la info de la función en si, que es el evento.
+                 Con e.target.value conseguimos explicitamente el valor ingresado por el usuario en un input, ya que value es un estilo del input
+
+Investigar y aprender sobre estos tres eventos
+
+State Uplifting--> Sirve para pasar data a través de un callback de un hijo a un padre
