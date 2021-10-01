@@ -26,7 +26,7 @@ const ItemCount = ({miCallback}) => {
         <a className="btn btn-dark me-2" onClick={handleSubstract}>-</a>
         <span>{valor}</span>
         <a className="btn btn-dark ms-2" onClick={handleSum}>+</a>
-        <Link className="btn btn-primary ms-3" onClick={handleClick} >Agregar al Carrito</Link>
+        <Link className="btn btn-primary ms-3" to="/cart" onClick={handleClick} >Agregar al Carrito</Link>
     </div>
     )
 }
