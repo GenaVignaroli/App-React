@@ -1,7 +1,8 @@
 import {useState} from "react"
+import { Link } from "react-router-dom";
 
-const ItemCount = ({}) => {
-    const [valor, setValor] = useState(0);
+const ItemCount = ({miCallback}) => {
+    const [valor, setValor] = useState(1);
 
     const handleSum = () =>{
         setValor(valor+1)
@@ -14,13 +15,18 @@ const ItemCount = ({}) => {
         setValor(valor-1)
     }
 
-   
+    const info = (valor)
+
+   const handleClick = () =>{
+       miCallback(info)
+   }
 
     return (
     <div className="btn-wrapper mt-3">
-        <a className="btn btn-dark me-3" onClick={handleSubstract}>-</a>
+        <a className="btn btn-dark me-2" onClick={handleSubstract}>-</a>
         <span>{valor}</span>
-        <a className="btn btn-dark ms-3" onClick={handleSum}>+</a>
+        <a className="btn btn-dark ms-2" onClick={handleSum}>+</a>
+        <Link className="btn btn-primary ms-3" onClick={handleClick} >Agregar al Carrito</Link>
     </div>
     )
 }

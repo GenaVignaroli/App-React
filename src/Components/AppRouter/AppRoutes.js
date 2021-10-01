@@ -1,7 +1,7 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route, useParams } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Cart from '../CartWidget/Cart'
 import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer'
-import { ProductDetail } from '../ItemDetailContainer/ProductDetail'
 import ItemListContainer from '../ItemListContainer/ItemListContainer'
 import Nav from '../NavBar/Nav'
 
@@ -12,9 +12,10 @@ export const AppRoutes = () => {
             <Router>
                 <Nav />
                 <Switch>
-                    <Route path="/ItemListContainer" exact component={ItemListContainer}/>
-                    <Route path="/ItemDetailContainer" exact component={ItemDetailContainer}/>
-                    <Route path="/Productos/:id" exact component={ProductDetail} />
+                    <Route exact path="/"  component={ItemListContainer}/>
+                    <Route exact path="/categoria/:id" component={ItemListContainer}/>
+                    <Route exact path="/item/:id" component={ItemDetailContainer} />
+                    <Route exact path="/cart" component={Cart} />
                 </Switch>
             </Router>
         </div>

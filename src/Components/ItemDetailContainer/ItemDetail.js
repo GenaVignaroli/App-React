@@ -1,15 +1,29 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import "../ItemDetailContainer/Container.css"
+import ItemCount from '../ItemListContainer/ItemCount'
 
-const ItemDetail = ({title, image, id}) => {
+const ItemDetail = ({producto}) => {
+
+
+    const onAdd = (info) => {
+        console.log("estoy en app y valgo: " + info)
+    }
+
     return (
-        <div className="card" style={{width: "18rem"}}>
-        <img className="card-img-top" style={{width: "150px", height:"150px"}} src={image} alt="Card image cap" />
-        <div className="card-body">
-          <h5 className="card-title">{title}</h5>
-          <Link to={`/Productos/${id}`} className="btn btn-primary">Ver producto </Link>
+       <div className="detail-container">
+         <img src={producto.img} className="card-img-top" style={{ width: "200px", height: "200px" }} alt="guitarra" />
+         <ul>
+           <h2>{producto.titulo}</h2>
+           <h3>{producto.categoria}</h3>
+         </ul>
+         <p className="p">{producto.descripcion}</p>
+       
+         <ul>
+           <h1 className="me-4">{producto.precio}</h1>
+           <ItemCount className="me-5" miCallback ={onAdd} />
+         </ul>
         </div>
-      </div>
     )
 }
 
