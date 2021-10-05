@@ -15,22 +15,6 @@ const productosDelServer = ([
 ])
 
 export const ItemDetailContainer = () => {
-    
-    /*const [productos, setProductos] = useState([]);
-
-    useEffect(() => {
-    setTimeout (() =>{
-        getProductos();
-    }, 2000)
-    }, []);
-
-    console.log(productos)
-
-    const getProductos = () =>{
-    fetch('https://fakestoreapi.com/products')
-        .then(res => res.json())
-        .then(data => setProductos(data));
-    }*/
 
     const [producto, setProducto] = useState({})
     const {id} = useParams();

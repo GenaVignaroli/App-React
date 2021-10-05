@@ -1,9 +1,10 @@
 import React from 'react'
 
 export const Cart = () => {
+
     return (
         <div>
-            Soy el carrito
+           <p>Soy el carrito</p>
         </div>
     )
 }
