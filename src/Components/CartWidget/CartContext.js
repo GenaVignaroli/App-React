@@ -8,12 +8,12 @@ export const CustomProvider = ({children}) => {
 
     const [cart,setCart]= useState([]);
 
-    const cartTotal = () => {
+    const cartTotal = (info) => {
         let total = 0;
-        cart.map(item => total += item.item.price*item.quantity)
+        cart.map(producto => total += producto.producto.price*info)
         return total;
     }
-
+    
     const getTotalQuantity = () => {
         if(cart.lenght === 0) {            
         }else{
@@ -22,29 +22,33 @@ export const CustomProvider = ({children}) => {
     }
 
     const isInCart = () => {
-        cart.find(item => item.item.id === item.id)
+        cart.find(producto => producto.producto.id === producto.id)
     }
 
-    const addItem = (item) => {
-        if(isInCart(item.id)){
-            <h4>Ya existe este producto</h4>
-            return false
-        }
-        setCart([...cart, item])
+
+    const addItem = (producto) => {
+            if(isInCart(producto.id)){
+                    <h4>Ya existe el producto</h4>
+                    return false
+                }
+                setCart([...cart, producto])
+                console.log(cart)
+            }
+
+    const removeItem = (id) => {
+        const itemInCart= cart.find(element => element.id === id)
+        let newCart = [...cart]
+        newCart.splice(cart.indexOf(itemInCart), 1)
+        setCart(newCart)
     }
 
-    const removeItem = (itemId) => {
-        const deleteItem = cart.filter((item)=>
-        item.itemid !== itemId)
-        setCart([...deleteItem]);
-    }
-
-    const clear = () => {
+    const clear = ()=> {
         setCart([])
     }
 
+
     return (
-        <Provider value={{cart, addItem, removeItem, clear, cartTotal, isInCart, getTotalQuantity}}>
+        <Provider value={{cart, addItem, removeItem, clear, isInCart, getTotalQuantity, setCart, cartTotal}}>
             {children}
         </Provider>
     )

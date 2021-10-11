@@ -17,9 +17,9 @@ export const AppRoutes = () => {
                 <Nav />
                 <Switch>
                     <Route exact path="/"  component={ItemListContainer}/>
-                    <Route exact path="/categoria/:id" component={ItemListContainer}/>
+                    <Route exact path="/Categoria/:id" component={ItemListContainer}/>
                     <Route exact path="/item/:id" component={ItemDetailContainer} />
-                    <Route exact path="/cart" component={Cart} />
+                    <Route exact path="/Cart" component={Cart} />
                 </Switch>
               </CustomProvider>
             </Router>

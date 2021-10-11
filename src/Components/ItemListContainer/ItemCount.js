@@ -1,7 +1,7 @@
 import {useState} from "react"
 
 
-const ItemCount = ({miCallback}) => {
+const ItemCount = ({miCallback, onAdd}) => {
     const [valor, setValor] = useState(1);
 
     const handleSum = () =>{
