@@ -1,8 +1,7 @@
-import  firebase from "firebase/app" //traes firebase
+import  firebase from "firebase/app" 
 
-import "firebase/firestore" // traes servivio que avs a usar
+import "firebase/firestore"
 
-//inicializas
 
 const firebaseConfig = {
     apiKey: "AIzaSyA0XHrSHSYlfrEFYUh5069zSP0GPqupYTQ",
@@ -15,4 +14,4 @@ const firebaseConfig = {
 
 const app = firebase.initializeApp(firebaseConfig)
     
-export const firestore = firebase.firestore(app)  //tenes referencia de base de datos. la variable de datos va a ser la coleccion
+export const firestore = firebase.firestore(app)  

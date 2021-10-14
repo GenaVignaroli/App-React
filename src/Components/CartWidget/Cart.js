@@ -1,9 +1,34 @@
 import React, { useContext } from 'react'
 import { contexto } from "./CartContext"
+import { firestore } from "../../firebase"
 
 const Cart = () => {
 
     const {cart, removeItem, cartTotal} = useContext(contexto);
+
+   /* const db = firestore
+    const coleccion = db.collection("ordenes")
+
+    const nuevaOrden ={
+        buyer :{
+            nombre : "Genaro",
+            telefono : "2995165651",
+            email : "email@email.com",
+        },
+        items : [],
+        date : firestore.Timestamp.now(),
+        total : 10
+    }
+
+    const consulta = coleccion.add(nuevaOrden)
+    consulta
+        .then(res=>{
+            console.log(res)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    */
     
     return (
         <div>

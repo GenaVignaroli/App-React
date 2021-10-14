@@ -32,7 +32,6 @@ export const CustomProvider = ({children}) => {
                     return false
                 }
                 setCart([...cart, producto])
-                console.log(cart)
             }
 
     const removeItem = (id) => {
