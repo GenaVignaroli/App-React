@@ -2,7 +2,6 @@ import  firebase from "firebase/app"
 
 import "firebase/firestore"
 
-
 const firebaseConfig = {
     apiKey: "AIzaSyA0XHrSHSYlfrEFYUh5069zSP0GPqupYTQ",
     authDomain: "proyecto-react-b7a7e.firebaseapp.com",

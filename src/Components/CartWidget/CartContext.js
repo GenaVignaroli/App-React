@@ -8,9 +8,9 @@ export const CustomProvider = ({children}) => {
 
     const [cart,setCart]= useState([]);
 
-    const cartTotal = (info) => {
+    const cartTotal = () => {
         let total = 0;
-        cart.map(producto => total += producto.producto.price*info)
+        cart.map(producto => total += producto.producto.price*producto.info)
         return total;
     }
     

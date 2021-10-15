@@ -1,13 +1,17 @@
 import React, { useContext } from 'react'
+import { useEffect, useState } from 'react'
 import { contexto } from "./CartContext"
 import { firestore } from "../../firebase"
 
 const Cart = () => {
 
-    const {cart, removeItem, cartTotal} = useContext(contexto);
+    const {cart, removeItem, cartTotal, clear} = useContext(contexto);
 
-   /* const db = firestore
-    const coleccion = db.collection("ordenes")
+    const [compra, setCompra] = useState(false)
+
+    useEffect(() =>{
+    const db = firestore
+    const coleccion = db.collection("confirmaciones")
 
     const nuevaOrden ={
         buyer :{
@@ -15,21 +19,29 @@ const Cart = () => {
             telefono : "2995165651",
             email : "email@email.com",
         },
-        items : [],
-        date : firestore.Timestamp.now(),
-        total : 10
+        items : [{
+            id: cart.map(producto => producto.producto.id),
+            titulo: cart.map(producto => producto.producto.Titulo),
+            Precio: cart.map(producto => producto.producto.Precio)
+        }],
+        total : [{
+            total: cart.map(producto => producto.info)
+        }]
     }
 
     const consulta = coleccion.add(nuevaOrden)
+
     consulta
         .then(res=>{
-            console.log(res)
+            setCompra(res.id)
         })
         .catch(err=>{
             console.log(err)
         })
-    */
+    },[])
     
+    
+        
     return (
         <div>
             {cart.map(producto => 
@@ -38,7 +50,8 @@ const Cart = () => {
                     <button className="btn btn-danger" onClick={() => removeItem(producto.id)}>BORRAR</button>
                 </div>
             )}
-            <h2>Precio Final: {cartTotal}</h2>
+            <h2>Precio Final: ${cartTotal}</h2>   
+            <button className="btn btn-primary" >CONFIRMAR COMPRA</button> <button className="btn btn-danger" onClick={() => clear([])}>VACIAR CARRITO</button>
         </div>
     )}
 
