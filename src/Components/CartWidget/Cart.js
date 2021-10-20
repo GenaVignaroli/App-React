@@ -7,7 +7,8 @@ const Cart = () => {
 
     const {cart, removeItem, cartTotal, clear} = useContext(contexto);
 
-    const [compra, setCompra] = useState(false)
+    const [compra, setCompra] = useState()
+    const [mostrar, setMostrar] = useState()
 
     useEffect(() =>{
     const db = firestore
@@ -35,10 +36,14 @@ const Cart = () => {
         .then(res=>{
             setCompra(res.id)
         })
-        .catch(err=>{
+        .catch( err=>{
             console.log(err)
         })
     },[])
+
+    const final = () => {
+        setMostrar(compra)
+    }
     
     
         
@@ -51,7 +56,8 @@ const Cart = () => {
                 </div>
             )}
             <h2>Precio Final: ${cartTotal}</h2>   
-            <button className="btn btn-primary" >CONFIRMAR COMPRA</button> <button className="btn btn-danger" onClick={() => clear([])}>VACIAR CARRITO</button>
+            <button className="btn btn-primary" onClick={final}>CONFIRMAR COMPRA</button> <button className="btn btn-danger" onClick={() => clear([])}>VACIAR CARRITO</button>
+            {mostrar ? <h2>Su compra se ha realizado. Siguela con el siguitente número: {compra}</h2>: null}
         </div>
     )}
 

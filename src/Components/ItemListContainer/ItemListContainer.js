@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import { firestore } from "../../firebase"
-import { collection, query, where } from "firebase/firestore";
 import ItemList from "./ItemList"
 
 const ItemListContainer = () => {    
@@ -10,44 +9,60 @@ const ItemListContainer = () => {
     const {id} = useParams()
 
     useEffect(() => {
-
+        if (id){
         const db = firestore
         const coleccion = db.collection("productos")
-        const consulta = coleccion
-
-        /*const consulta = collection(db, "productos");
-        const q = query(consulta, where("Categoria", "==", "Electricas"));
-        
-        const consulta = coleccion.where("Categoria","==","Electrticas")
-        .where("Categoria", "==", "Acusticas")*/
-
-        consulta.get()
-            .then((resultado) => {
-                if (resultado.size === 0){
-                    return;
-                }
-                setProductosIniciales(resultado.docs.map(doc => doc.data()));
-               const productosFinales = resultado.docs.map((producto) => {
-                    const productoFinal = {
-                        id: producto.id,
+        let consulta = coleccion.where("Categoria", "==", id)
+        consulta = consulta.get()
+        consulta
+            .then((res)=>{
+              
+                const productosParciales = res.docs.map((producto) => {
+                    const productoParcial = {
+                        id : producto.id,
                         ...producto.data()
                     }
-                    return productoFinal                   
-                });
-                console.log(productosFinales)
-                setProductosIniciales(productosFinales)
+                    return productoParcial
+                })
+                setProductosIniciales(productosParciales)
             })
-            .catch(() => {
-            })
-
-    },[])
-
+        }else{
+            const db = firestore
+            const coleccion = db.collection("productos")
+            const consulta = coleccion
     
+            consulta.get()
+                .then((resultado) => {
+                    if (resultado.size === 0){
+                        return;
+                    }
+                    setProductosIniciales(resultado.docs.map(doc => doc.data()));
+                   const productosFinales = resultado.docs.map((producto) => {
+                        const productoFinal = {
+                            id: producto.id,
+                            ...producto.data()
+                        }
+                        return productoFinal                   
+                    });
+                    setProductosIniciales(productosFinales)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+            }
+        },[])
+
+        
+
+    if (productosIniciales.length > 0){
     return (
-        <>
           <ItemList productos={productosIniciales} />
-        </>
-    )
+    );
+    }else {
+        return(
+            <p>Cargando...</p>
+        )
+    }
 }
 
 export default ItemListContainer

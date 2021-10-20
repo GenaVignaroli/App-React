@@ -12,15 +12,13 @@ const ItemDetail = ({producto}) => {
     const [unidades, setUnidades] = useState()
 
 
-    
-    const onAdd = (info) => {
+     const onAdd = (info) => {
         const itemAgregado = {
              producto : producto ,
              info : info
         }
         addItem(itemAgregado)
         setUnidades(itemAgregado)
-        console.log(unidades)
         setMostrar(!mostrar)
     }
   

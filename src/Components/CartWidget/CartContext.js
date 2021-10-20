@@ -10,9 +10,10 @@ export const CustomProvider = ({children}) => {
 
     const cartTotal = () => {
         let total = 0;
-        cart.map(producto => total += producto.producto.price*producto.info)
+        cart.map(producto => total += producto.producto.Precio*producto.info)
         return total;
     }
+    
     
     const getTotalQuantity = () => {
         if(cart.lenght === 0) {            
