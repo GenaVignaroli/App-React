@@ -6,12 +6,11 @@ import contexto from "./CartContext";
 
 const CartWidget = () => {
 
-    const {getTotalQuantity} = useContext(contexto)
 
     return (
         <Link className="cart-widget" to="/cart">
             <BiCartAlt className="icon"/>
-            <span className="number">{getTotalQuantity}</span>
+            <span className="number"></span>
         </Link>
     )
 }

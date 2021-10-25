@@ -8,19 +8,6 @@ export const CustomProvider = ({children}) => {
 
     const [cart,setCart]= useState([]);
 
-    /*const cartTotal = () => {
-        let total = 0;
-        cart.map(producto => {total += producto.producto.Precio*producto.info})
-        return total;
-    }*/
-    
-    
-    const getTotalQuantity = () => {
-        if(cart.lenght === 0) {            
-        }else{
-            return cart.length
-        }
-    }
 
     const isInCart = () => {
         cart.find(producto => producto.producto.id === producto.id)
