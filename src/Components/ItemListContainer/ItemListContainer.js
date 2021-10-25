@@ -13,17 +13,18 @@ const ItemListContainer = () => {
         const db = firestore
         const coleccion = db.collection("productos")
         let consulta = coleccion.where("Categoria", "==", id)
-        consulta = consulta.get()
-        consulta
-            .then((res)=>{
-              
+        consulta = consulta.get().then((res)=>{
+                if (res.size === 0){
+                    return;
+                }
+                setProductosIniciales(res.docs.map(doc => doc.data()));
                 const productosParciales = res.docs.map((producto) => {
                     const productoParcial = {
                         id : producto.id,
                         ...producto.data()
                     }
                     return productoParcial
-                })
+                });
                 setProductosIniciales(productosParciales)
             })
         }else{
@@ -51,8 +52,7 @@ const ItemListContainer = () => {
                 })
             }
         },[])
-
-        
+    
 
     if (productosIniciales.length > 0){
     return (

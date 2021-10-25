@@ -44,21 +44,29 @@ const Cart = () => {
     const final = () => {
         setMostrar(compra)
     }
-    
-    
-        
-    return (
+
+    const listaDeTotales = [0];
+
+    return(
         <div>
-            {cart.map(producto => 
-                <div key={producto.producto.id}>
-                    {producto.producto.Titulo} x {producto.info} - ${producto.producto.Precio * producto.info}
-                    <button className="btn btn-danger" onClick={() => removeItem(producto.id)}>BORRAR</button>
-                </div>
-            )}
-            <h2>Precio Final: ${cartTotal}</h2>   
-            <button className="btn btn-primary" onClick={final}>CONFIRMAR COMPRA</button> <button className="btn btn-danger" onClick={() => clear([])}>VACIAR CARRITO</button>
-            {mostrar ? <h2>Su compra se ha realizado. Siguela con el siguitente número: {compra}</h2>: null}
+            <h1>Carrito</h1>
+            <ul>
+                {cart.map((producto)=>{
+                    const total = producto.producto.Precio * producto.info
+                    listaDeTotales.push(total)
+                    return(
+                        <li>
+                            {producto.producto.Titulo} Cantidad: {producto.info} precio: {producto.producto.Precio * producto.info}
+                            <button className="btn btn-danger" onClick={() => removeItem(producto.id)}>BORRAR</button>
+                        </li>
+                    )
+                })}
+            </ul>
+            <h4>Total: $ {listaDeTotales.reduce((prev, next) => prev + next)}</h4>
+            <h3><button className="btn btn-primary" onClick={final}>CONFIRMAR COMPRA</button> <button className="btn btn-danger" onClick={() => clear([])}>VACIAR CARRITO</button>
+            {mostrar ? <h4>Su compra se ha realizado. Siguela con el siguitente número: {compra}</h4>: null}</h3>
         </div>
-    )}
+    )
+    }
 
     export default Cart

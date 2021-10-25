@@ -8,11 +8,11 @@ export const CustomProvider = ({children}) => {
 
     const [cart,setCart]= useState([]);
 
-    const cartTotal = () => {
+    /*const cartTotal = () => {
         let total = 0;
-        cart.map(producto => total += producto.producto.Precio*producto.info)
+        cart.map(producto => {total += producto.producto.Precio*producto.info})
         return total;
-    }
+    }*/
     
     
     const getTotalQuantity = () => {
@@ -48,7 +48,7 @@ export const CustomProvider = ({children}) => {
 
 
     return (
-        <Provider value={{cart, addItem, removeItem, clear, isInCart, getTotalQuantity, setCart, cartTotal}}>
+        <Provider value={{cart, addItem, removeItem, clear, isInCart, getTotalQuantity, setCart}}>
             {children}
         </Provider>
     )
